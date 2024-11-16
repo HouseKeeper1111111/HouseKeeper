@@ -16,6 +16,8 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.housekeeper.ui.theme.HouseKeeperTextStyles
+import com.example.housekeeper.ui.theme.SmokyBlack
 import com.example.housekeeper.ui.theme.WhiteLilac
 import com.example.housekeeper.ui.theme.rememberScreenSize
 import com.example.housekeeper.ui.theme.UbuntuFontFamily
@@ -39,11 +41,7 @@ fun ReminderScreen() {
                 ) {
                     Text(
                         text = "Your reminders",
-                        style = TextStyle(
-                            fontSize = 20.sp,
-                            fontFamily = UbuntuFontFamily,
-                            fontWeight = FontWeight.Medium
-                        )
+                        style = HouseKeeperTextStyles.SmokyBlack20Black
                     )
                 }
             }

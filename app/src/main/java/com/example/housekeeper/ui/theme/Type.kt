@@ -48,10 +48,11 @@ val UbuntuFontFamily = FontFamily(
 
 
 object HouseKeeperTextStyles {
-    val SmokyBlack20Normal = TextStyle(
+    val SmokyBlack20Black = TextStyle(
         fontSize = 20.sp,
         fontFamily = UbuntuFontFamily,
-        fontWeight = FontWeight.Normal,
-        color = SmokyBlack
+        fontWeight = FontWeight.Black,
+        color = SmokyBlack,
+        letterSpacing = 0.08.sp
     )
 }

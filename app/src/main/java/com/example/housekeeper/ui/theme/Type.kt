@@ -41,9 +41,17 @@ val provider = GoogleFont.Provider(
     providerPackage = "com.google.android.gms",
     certificates = R.array.com_google_android_gms_fonts_certs
 )
-
 val UbuntuFont = GoogleFont("Ubuntu")
-
 val UbuntuFontFamily = FontFamily(
     Font(googleFont = UbuntuFont, fontProvider = provider),
 )
+
+
+object HouseKeeperTextStyles {
+    val SmokyBlack20Normal = TextStyle(
+        fontSize = 20.sp,
+        fontFamily = UbuntuFontFamily,
+        fontWeight = FontWeight.Normal,
+        color = SmokyBlack
+    )
+}

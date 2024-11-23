@@ -51,14 +51,14 @@ fun Router(navController: NavHostController) {
         Spacer(modifier = Modifier.weight(1f))
         IconToggleButton(
             modifier = Modifier.size(45.dp),
-            checked = currentScreen == Screen.ReminderScreen.route,
+            checked = currentScreen == Screen.TimerScreen.route,
             onCheckedChange = {
                 if (!it) return@IconToggleButton
 //                currentScreen = Screen.TimerScreen.route
 //                navController.navigate(Screen.TimerScreen.route)
             }
         ) {
-            val timerIcon = if (currentScreen == Screen.ReminderScreen.route) {
+            val timerIcon = if (currentScreen == Screen.TimerScreen.route) {
                 R.drawable.timer_active_icon
             } else {
                 R.drawable.timer_no_active_icon
@@ -72,14 +72,14 @@ fun Router(navController: NavHostController) {
         Spacer(modifier = Modifier.weight(1f))
         IconToggleButton(
             modifier = Modifier.size(45.dp),
-            checked = currentScreen == Screen.ReminderScreen.route,
+            checked = currentScreen == Screen.CleanerScreen.route,
             onCheckedChange = {
                 if (!it) return@IconToggleButton
 //                currentScreen = Screen.CleanerScreen.route
 //                navController.navigate(Screen.CleanerScreen.route)
             }
         ) {
-            val cleanerIcon = if (currentScreen == Screen.ReminderScreen.route) {
+            val cleanerIcon = if (currentScreen == Screen.CleanerScreen.route) {
                 R.drawable.cleaner_active_icon
             } else {
                 R.drawable.cleaner_no_active_icon
@@ -93,14 +93,14 @@ fun Router(navController: NavHostController) {
         Spacer(modifier = Modifier.weight(1f))
         IconToggleButton(
             modifier = Modifier.size(45.dp),
-            checked = currentScreen == Screen.ReminderScreen.route,
+            checked = currentScreen == Screen.SettingsScreen.route,
             onCheckedChange = {
                 if (!it) return@IconToggleButton
 //                currentScreen = Screen.SettingsScreen.route
 //                navController.navigate(Screen.SettingsScreen.route)
             }
         ) {
-            val settingsIcon = if (currentScreen == Screen.ReminderScreen.route) {
+            val settingsIcon = if (currentScreen == Screen.SettingsScreen.route) {
                 R.drawable.settings_active_icon
             } else {
                 R.drawable.settings_no_active_icon

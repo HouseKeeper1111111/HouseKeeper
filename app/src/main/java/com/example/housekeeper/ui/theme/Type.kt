@@ -1,6 +1,7 @@
 package com.example.housekeeper.ui.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -48,10 +49,19 @@ val UbuntuFontFamily = FontFamily(
 
 
 object HouseKeeperTextStyles {
-    val SmokyBlack20Normal = TextStyle(
-        fontSize = 20.sp,
+    val CursedBlack35Black = TextStyle(
+        fontSize = 35.sp,
         fontFamily = UbuntuFontFamily,
-        fontWeight = FontWeight.Normal,
-        color = SmokyBlack
+        fontWeight = FontWeight.Black,
+        color = CursedBlack,
+        letterSpacing = 2.sp,
+        shadow = Shadow(color = EliteTeal)
+    )
+    val EliteTeal22Medium = TextStyle(
+        fontSize = 22.sp,
+        fontFamily = UbuntuFontFamily,
+        fontWeight = FontWeight.Medium,
+        color = EliteTeal,
+        letterSpacing = 0.07.sp
     )
 }

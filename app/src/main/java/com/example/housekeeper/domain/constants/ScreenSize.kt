@@ -1,4 +1,4 @@
-package com.example.housekeeper.ui.theme
+package com.example.housekeeper.domain.constants
 
 import android.content.Context
 import android.util.DisplayMetrics
@@ -17,7 +17,7 @@ data class ScreenSize(
 class ScreenSizeProvider(context: Context) {
     private val displayMetrics: DisplayMetrics = context.resources.displayMetrics
 
-    val height: Dp = (displayMetrics.heightPixels/ displayMetrics.density).dp
+    val height: Dp = (displayMetrics.heightPixels / displayMetrics.density).dp
     val width: Dp = (displayMetrics.widthPixels / displayMetrics.density).dp
 }
 
@@ -34,3 +34,4 @@ fun rememberScreenSize(): ScreenSize {
         )
     }
 }
+

@@ -5,31 +5,32 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.housekeeper.ui.pages.ReminderView
 
 @Composable
 fun NavigationGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    //startDestination: String = Screen.StartScreen.route
+    startDestination: String = Screen.ReminderScreen.route
 ) {
-//    NavHost(
-//        modifier = modifier,
-//        navController = navController,
-//        startDestination = startDestination
-//    ) {
-
-//        composable(route = Screen.PhoneNumberScreen.route) {
-//            PhoneNumberView(
-//                onNavigateToEnteringTheCodeScreen = {
-//                    navController.navigate(Screen.EnteringTheCodeScreen.route) {
-//                        popUpTo(Screen.PhoneNumberScreen.route) {
+    NavHost(
+        modifier = modifier,
+        navController = navController,
+        startDestination = startDestination
+    ) {
+        composable(route = Screen.ReminderScreen.route) {
+            ReminderView(
+                navController = navController,
+                onNavigateToSettingsScreen = {
+//                    navController.navigate(Screen.SettingsScreen.route) {
+//                        popUpTo(Screen.ReminderScreen.route) {
 //                            inclusive = true    // удалить экран из стека
 //                            saveState = true    // сохранить состояние
 //                        }
 //                        restoreState = true     // восставновить состояние
 //                    }
-//                }
-//            )
-//        }
-//    }
+                }
+            )
+        }
+    }
 }

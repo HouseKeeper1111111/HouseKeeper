@@ -1,5 +1,6 @@
 package com.example.housekeeper.domain.navigation
 
 sealed class Screen(val route: String) {
-//    object StartScreen: Screen(route = "start_screen")
+    data object ReminderScreen: Screen(route = "reminder_screen")
+    data object SettingsScreen: Screen(route = "settings_screen")
 }

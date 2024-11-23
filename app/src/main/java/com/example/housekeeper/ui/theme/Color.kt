@@ -11,5 +11,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val PinkChampagne = Color(0xFFE7DFED)
+val MidnightVelvet = Color(0xFF2C153A)
+
 val CursedBlack = Color(0xFF121212)
 val EliteTeal = Color(0xFF15303A)

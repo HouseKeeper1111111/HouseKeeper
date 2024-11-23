@@ -29,7 +29,7 @@ fun Router(navController: NavHostController) {
     ) {
         Spacer(modifier = Modifier.weight(1f))
         IconToggleButton(
-            modifier = Modifier.size(50.dp),
+            modifier = Modifier.size(45.dp),
             checked = currentScreen == Screen.ReminderScreen.route,
             onCheckedChange = {
                 if (!it) return@IconToggleButton
@@ -45,12 +45,12 @@ fun Router(navController: NavHostController) {
             Image(
                 painter = painterResource(reminderIcon),
                 contentDescription = null,
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(35.dp)
             )
         }
         Spacer(modifier = Modifier.weight(1f))
         IconToggleButton(
-            modifier = Modifier.size(50.dp),
+            modifier = Modifier.size(45.dp),
             checked = currentScreen == Screen.ReminderScreen.route,
             onCheckedChange = {
                 if (!it) return@IconToggleButton
@@ -66,12 +66,12 @@ fun Router(navController: NavHostController) {
             Image(
                 painter = painterResource(timerIcon),
                 contentDescription = null,
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(35.dp)
             )
         }
         Spacer(modifier = Modifier.weight(1f))
         IconToggleButton(
-            modifier = Modifier.size(50.dp),
+            modifier = Modifier.size(45.dp),
             checked = currentScreen == Screen.ReminderScreen.route,
             onCheckedChange = {
                 if (!it) return@IconToggleButton
@@ -87,12 +87,12 @@ fun Router(navController: NavHostController) {
             Image(
                 painter = painterResource(cleanerIcon),
                 contentDescription = null,
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(35.dp)
             )
         }
         Spacer(modifier = Modifier.weight(1f))
         IconToggleButton(
-            modifier = Modifier.size(50.dp),
+            modifier = Modifier.size(45.dp),
             checked = currentScreen == Screen.ReminderScreen.route,
             onCheckedChange = {
                 if (!it) return@IconToggleButton
@@ -108,7 +108,7 @@ fun Router(navController: NavHostController) {
             Image(
                 painter = painterResource(settingsIcon),
                 contentDescription = null,
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(35.dp)
             )
         }
         Spacer(modifier = Modifier.weight(1f))

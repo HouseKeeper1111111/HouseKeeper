@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.housekeeper.R
+import com.example.housekeeper.domain.constants.DrawableConstants
 import com.example.housekeeper.domain.navigation.Screen
 import com.example.housekeeper.ui.theme.MidnightVelvet
 
@@ -38,9 +38,9 @@ fun Router(navController: NavHostController) {
             }
         ) {
             val reminderIcon = if (currentScreen == Screen.ReminderScreen.route) {
-                R.drawable.reminder_active_icon
+                DrawableConstants.REMINDER_ACTIVE_ICON
             } else {
-                R.drawable.reminder_no_active_icon
+                DrawableConstants.REMINDER_NO_ACTIVE_ICON
             }
             Image(
                 painter = painterResource(reminderIcon),
@@ -59,9 +59,9 @@ fun Router(navController: NavHostController) {
             }
         ) {
             val timerIcon = if (currentScreen == Screen.TimerScreen.route) {
-                R.drawable.timer_active_icon
+                DrawableConstants.TIMER_ACTIVE_ICON
             } else {
-                R.drawable.timer_no_active_icon
+                DrawableConstants.TIMER_NO_ACTIVE_ICON
             }
             Image(
                 painter = painterResource(timerIcon),
@@ -80,9 +80,9 @@ fun Router(navController: NavHostController) {
             }
         ) {
             val cleanerIcon = if (currentScreen == Screen.CleanerScreen.route) {
-                R.drawable.cleaner_active_icon
+                DrawableConstants.CLEANER_ACTIVE_ICON
             } else {
-                R.drawable.cleaner_no_active_icon
+                DrawableConstants.CLEANER_NO_ACTIVE_ICON
             }
             Image(
                 painter = painterResource(cleanerIcon),
@@ -101,9 +101,9 @@ fun Router(navController: NavHostController) {
             }
         ) {
             val settingsIcon = if (currentScreen == Screen.SettingsScreen.route) {
-                R.drawable.settings_active_icon
+                DrawableConstants.SETTINGS_ACTIVE_ICON
             } else {
-                R.drawable.settings_no_active_icon
+                DrawableConstants.SETTINGS_NO_ACTIVE_ICON
             }
             Image(
                 painter = painterResource(settingsIcon),

@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -28,7 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.housekeeper.R
+import com.example.housekeeper.domain.constants.DrawableConstants
 import com.example.housekeeper.ui.router.Router
 import com.example.housekeeper.ui.theme.HouseKeeperTextStyles
 import com.example.housekeeper.ui.theme.PinkChampagne
@@ -41,11 +43,15 @@ fun ReminderView(
 ) {
     val screenSize = rememberScreenSize()
     val categoriesList = listOf(
-        Pair(R.drawable.kitchen, "Kitchen"),
-        Pair(R.drawable.bedroom, "Bedroom"),
-        Pair(R.drawable.living_room, "Living room"),
-        Pair(R.drawable.pets, "Pets"),
+        Pair(DrawableConstants.KITCHEN, "Kitchen"),
+        Pair(DrawableConstants.BEDROOM, "Bedroom"),
+        Pair(DrawableConstants.LIVING_ROOM, "Living room"),
+        Pair(DrawableConstants.PETS, "Pets"),
         Pair(null, "+"),
+    )
+    val withoutCategory = listOf(
+        listOf(DrawableConstants.RAG_ICON, "Clean mirrors", "2d 17h"),
+        listOf(DrawableConstants.BROOM_ICON, "Clean floors", "3d 12h")
     )
 
     Scaffold(
@@ -72,7 +78,9 @@ fun ReminderView(
                     Spacer(modifier = Modifier.height((screenSize.height.value * 0.03).dp))
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(2),
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight(),
                         verticalArrangement = Arrangement.spacedBy(15.dp)
                     ) {
                         items(categoriesList) {
@@ -102,6 +110,11 @@ fun ReminderView(
                             }
                         }
                     }
+                    Spacer(modifier = Modifier.height((screenSize.height.value * 0.05).dp))
+                    Text(
+                        text = "Without category",
+                        style = HouseKeeperTextStyles.CursedBlack35Black
+                    )
                 }
             }
         },

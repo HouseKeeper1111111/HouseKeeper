@@ -20,6 +20,7 @@ fun NavigationGraph(
     ) {
         composable(route = Screen.ReminderScreen.route) {
             ReminderView(
+                navController = navController,
                 onNavigateToSettingsScreen = {
 //                    navController.navigate(Screen.SettingsScreen.route) {
 //                        popUpTo(Screen.ReminderScreen.route) {

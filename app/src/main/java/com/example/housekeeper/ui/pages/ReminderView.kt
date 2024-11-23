@@ -31,10 +31,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.housekeeper.domain.constants.DrawableConstants
+import com.example.housekeeper.domain.constants.rememberScreenSize
 import com.example.housekeeper.ui.router.Router
 import com.example.housekeeper.ui.theme.HouseKeeperTextStyles
 import com.example.housekeeper.ui.theme.PinkChampagne
-import com.example.housekeeper.ui.theme.rememberScreenSize
 
 @Composable
 fun ReminderView(
@@ -115,6 +115,8 @@ fun ReminderView(
                         text = "Without category",
                         style = HouseKeeperTextStyles.CursedBlack35Black
                     )
+                    Spacer(modifier = Modifier.height((screenSize.height.value * 0.03).dp))
+
                 }
             }
         },

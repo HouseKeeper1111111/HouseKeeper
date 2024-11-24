@@ -1,4 +1,4 @@
-package com.example.housekeeper.presentation.pages
+package com.example.housekeeper.presentation.reminder.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -36,7 +36,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.housekeeper.core.domain.constants.DrawableConstants
 import com.example.housekeeper.core.domain.constants.rememberScreenSize
-import com.example.housekeeper.presentation.router.Router
+import com.example.housekeeper.ui.presentation.router.Router
 import com.example.housekeeper.ui.theme.HouseKeeperTextStyles
 import com.example.housekeeper.ui.theme.PinkChampagne
 

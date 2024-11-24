@@ -1,4 +1,4 @@
-package com.example.housekeeper.presentation.router
+package com.example.housekeeper.ui.presentation.router
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer

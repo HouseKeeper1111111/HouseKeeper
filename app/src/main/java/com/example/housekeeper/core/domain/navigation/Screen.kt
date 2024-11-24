@@ -1,4 +1,4 @@
-package com.example.housekeeper.domain.navigation
+package com.example.housekeeper.core.domain.navigation
 
 sealed class Screen(val route: String) {
     data object ReminderScreen: Screen(route = "reminder_screen")

@@ -1,4 +1,4 @@
-package com.example.housekeeper.domain.constants
+package com.example.housekeeper.core.domain.constants
 
 import androidx.annotation.DrawableRes
 import com.example.housekeeper.R

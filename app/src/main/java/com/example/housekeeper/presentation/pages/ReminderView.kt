@@ -1,4 +1,4 @@
-package com.example.housekeeper.ui.pages
+package com.example.housekeeper.presentation.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,9 +34,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.housekeeper.domain.constants.DrawableConstants
-import com.example.housekeeper.domain.constants.rememberScreenSize
-import com.example.housekeeper.ui.router.Router
+import com.example.housekeeper.core.domain.constants.DrawableConstants
+import com.example.housekeeper.core.domain.constants.rememberScreenSize
+import com.example.housekeeper.presentation.router.Router
 import com.example.housekeeper.ui.theme.HouseKeeperTextStyles
 import com.example.housekeeper.ui.theme.PinkChampagne
 

@@ -1,4 +1,4 @@
-package com.example.housekeeper.ui.router
+package com.example.housekeeper.presentation.router
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer
@@ -16,8 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.housekeeper.domain.constants.DrawableConstants
-import com.example.housekeeper.domain.navigation.Screen
+import com.example.housekeeper.core.domain.constants.DrawableConstants
+import com.example.housekeeper.core.domain.navigation.Screen
 import com.example.housekeeper.ui.theme.MidnightVelvet
 
 @Composable

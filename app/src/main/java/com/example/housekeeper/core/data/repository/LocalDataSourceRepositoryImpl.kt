@@ -7,6 +7,7 @@ import com.example.housekeeper.core.domain.model.Category
 import com.example.housekeeper.core.domain.model.Reminder
 import com.example.housekeeper.core.domain.model.Timer
 import com.example.housekeeper.core.domain.repository.LocalDataSourceRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class LocalDataSourceRepositoryImpl @Inject constructor(
@@ -17,6 +18,8 @@ class LocalDataSourceRepositoryImpl @Inject constructor(
 
     // Category
     override fun getAllCategoriesFlow() = categoryDataSource.getAllCategoriesFlow()
+
+    override fun getCategoryByIdFlow(id: Int) = categoryDataSource.getCategoryByIdFlow(id)
 
     override suspend fun addCategory(category: Category) = categoryDataSource.addCategory(category)
 

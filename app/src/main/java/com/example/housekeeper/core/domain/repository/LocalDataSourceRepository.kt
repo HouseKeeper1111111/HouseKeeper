@@ -7,6 +7,18 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSourceRepository {
 
+    // Category
+    fun getAllCategoriesFlow(): Flow<List<Category>>
+
+    fun getCategoryByIdFlow(id: Int): Flow<Category>
+
+    suspend fun addCategory(category: Category)
+
+    suspend fun updateCategory(category: Category)
+
+    suspend fun deleteCategory(category: Category)
+
+
     // Reminder
     fun getAllRemindersFlow(): Flow<List<Reminder>>
 
@@ -19,16 +31,6 @@ interface LocalDataSourceRepository {
     suspend fun updateReminder(reminder: Reminder)
 
     suspend fun deleteReminder(reminder: Reminder)
-
-
-    // Category
-    fun getAllCategoriesFlow(): Flow<List<Category>>
-
-    suspend fun addCategory(category: Category)
-
-    suspend fun updateCategory(category: Category)
-
-    suspend fun deleteCategory(category: Category)
 
 
     // Timer

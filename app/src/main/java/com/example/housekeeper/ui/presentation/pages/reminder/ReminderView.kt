@@ -1,4 +1,4 @@
-package com.example.housekeeper.presentation.reminder.pages
+package com.example.housekeeper.ui.presentation.pages.reminder
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

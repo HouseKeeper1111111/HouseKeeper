@@ -1,7 +1,7 @@
-package com.example.housekeeper.presentation.reminder.domain.impl
+package com.example.housekeeper.core.data.use_case.category
 
 import com.example.housekeeper.core.domain.repository.LocalDataSourceRepository
-import com.example.housekeeper.presentation.reminder.domain.use_case.GetAllCategoriesUseCase
+import com.example.housekeeper.core.domain.use_case.category.GetAllCategoriesUseCase
 import javax.inject.Inject
 
 class GetAllCategoriesUseCaseImpl @Inject constructor(

@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.housekeeper.presentation.reminder.pages.ReminderView
+import com.example.housekeeper.ui.presentation.pages.reminder.ReminderView
 
 @Composable
 fun NavigationGraph(

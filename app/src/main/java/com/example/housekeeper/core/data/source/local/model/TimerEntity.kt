@@ -20,5 +20,5 @@ data class TimerEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo val name: String,
     @ColumnInfo val time: Int,
-    @ColumnInfo(index = true) val categoryId: Int
+    @ColumnInfo(name = "category_id", index = true) val categoryId: Int
 )

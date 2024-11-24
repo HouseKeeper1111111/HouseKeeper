@@ -1,6 +1,5 @@
 package com.example.housekeeper.core.data.source.local.model
 
-import androidx.annotation.DrawableRes
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -20,7 +19,7 @@ import androidx.room.PrimaryKey
 data class ReminderEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo val name: String,
-    @ColumnInfo @DrawableRes val iconId: Int,
-    @ColumnInfo val dateTime: Long,
-    @ColumnInfo(index = true) val categoryId: Int
+    @ColumnInfo(name = "icon_path") val iconPath: String,
+    @ColumnInfo(name = "date_time") val dateTime: Long,
+    @ColumnInfo(name = "category_id", index = true) val categoryId: Int
 )

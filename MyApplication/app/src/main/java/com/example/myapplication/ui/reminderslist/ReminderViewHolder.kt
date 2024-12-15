@@ -13,7 +13,7 @@ import com.example.myapplication.R
 import java.util.*
 
 /**
- * A base item view holder for reminders lists.
+ * A base item view holder for reminders lists
  */
 open class ReminderViewHolder(@LayoutRes datefieldRes: Int, itemView: CardView) :
     RecyclerView.ViewHolder(itemView) {
@@ -46,7 +46,7 @@ open class ReminderViewHolder(@LayoutRes datefieldRes: Int, itemView: CardView) 
 
 
     /**
-     * If the view holder has a date view, this method should initialize it with the given parameters.
+     * If the view holder has a date view, this method should initialize it with the given parameters
      */
     open fun initializeDateView(date: Date, context: Context) = Unit
 }

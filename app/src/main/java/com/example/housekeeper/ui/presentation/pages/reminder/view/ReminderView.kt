@@ -1,4 +1,4 @@
-package com.example.housekeeper.ui.pages
+package com.example.housekeeper.ui.presentation.pages.reminder.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,6 +23,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,20 +33,25 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.housekeeper.domain.constants.DrawableConstants
-import com.example.housekeeper.domain.constants.rememberScreenSize
-import com.example.housekeeper.ui.router.Router
+import com.example.housekeeper.core.domain.constants.DrawableConstants
+import com.example.housekeeper.core.domain.constants.rememberScreenSize
+import com.example.housekeeper.ui.presentation.pages.reminder.view_model.ReminderViewModel
+import com.example.housekeeper.ui.presentation.router.Router
 import com.example.housekeeper.ui.theme.HouseKeeperTextStyles
 import com.example.housekeeper.ui.theme.PinkChampagne
 
 @Composable
-fun ReminderView(
+internal fun ReminderView(
     navController: NavHostController,
+    viewModel: ReminderViewModel,
     onNavigateToSettingsScreen: () -> Unit
 ) {
     val screenSize = rememberScreenSize()
+    val state = viewModel.viewState.collectAsState().value
+
     val categoriesList = listOf(
         Pair(DrawableConstants.KITCHEN, "Kitchen"),
         Pair(DrawableConstants.BEDROOM, "Bedroom"),
@@ -53,7 +59,7 @@ fun ReminderView(
         Pair(DrawableConstants.PETS, "Pets"),
         Pair(null, "+")
     )
-    val withoutCategoryList = listOf(
+    val remindersList = listOf(
         Triple(DrawableConstants.RAG_ICON, "Clean mirrors", "2d 17h"),
         Triple(DrawableConstants.BROOM_ICON, "Clean floors", "3d 12h")
     )
@@ -131,7 +137,7 @@ fun ReminderView(
                     )
                     Spacer(modifier = Modifier.height((screenSize.height.value * 0.03).dp))
                     LazyColumn(verticalArrangement = Arrangement.spacedBy(15.dp),) {
-                        items(withoutCategoryList) {
+                        items(remindersList) {
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -176,5 +182,5 @@ fun ReminderView(
 @Composable
 @Preview(device = Devices.PIXEL_7_PRO)
 private fun ReminderViewPreview() {
-    ReminderView(onNavigateToSettingsScreen = {}, navController = rememberNavController())
+    ReminderView(onNavigateToSettingsScreen = {}, navController = rememberNavController(), viewModel = viewModel())
 }

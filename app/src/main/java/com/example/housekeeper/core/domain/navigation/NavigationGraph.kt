@@ -1,11 +1,11 @@
-package com.example.housekeeper.domain.navigation
+package com.example.housekeeper.core.domain.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.housekeeper.ui.pages.ReminderView
+import com.example.housekeeper.ui.presentation.pages.reminder.ReminderView
 
 @Composable
 fun NavigationGraph(

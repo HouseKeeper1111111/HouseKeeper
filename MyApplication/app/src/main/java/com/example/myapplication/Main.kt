@@ -11,7 +11,6 @@ import org.acra.ktx.initAcra
 import org.acra.mail.BuildConfig
 
 class Main : Application() {
-    // Note: This is run before any app component starts, i.e., also when starting the app via "Add reminder" or the service.
     override fun onCreate() {
         super.onCreate()
 
@@ -44,9 +43,7 @@ class Main : Application() {
     }
 
     companion object {
-        /**
-         * The current (newest) version of storing reminders in [Prefs].
-         */
+
         @JvmField
         var REMINDERS_LIST_FORMAT_VERSION = 1
 

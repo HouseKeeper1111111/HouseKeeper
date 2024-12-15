@@ -30,6 +30,8 @@ import com.example.myapplication.ui.EditReminderDialogActivity
 import com.example.myapplication.ui.reminderslist.RemindersListFragment.Companion.BROADCAST_REMINDERS_UPDATED
 import java.util.*
 
+// All useful comments are in safe
+
 /**
  * A fragment displaying a list of reminders. May only be used in an [AppCompatActivity] with a toolbar. Displays reminders in sections:
  * - A "Due" section: SCHEDULED and NOTIFIED reminders which are due according to the current time, sorted descending by date)
@@ -200,10 +202,7 @@ class RemindersListFragment : Fragment() {
         super.onPause()
     }
 
-    /*
-     * Start [EditReminderDialogActivity] and reload reminders list when the activity finishes
-     * with [Activity.RESULT_OK].
-     */
+
     private fun startEditReminderDialogActivityAndReloadOnOK(reminderId: Int) {
         val intent = EditReminderDialogActivity.getIntentEditReminder(
             context,
@@ -222,7 +221,6 @@ class RemindersListFragment : Fragment() {
      * Call when the reminders list has changed, to reload all items.
      */
     fun reloadRemindersListAndUpdateRecyclerView() {
-        // Load reminders list
         val remindersList = ReminderStorage.getReminders(requireContext())
         // Add entries to map (SparseArray)
         reminders.clear()

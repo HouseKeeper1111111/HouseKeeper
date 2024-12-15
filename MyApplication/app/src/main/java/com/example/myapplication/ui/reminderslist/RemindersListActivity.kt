@@ -74,10 +74,8 @@ class RemindersListActivity : AppCompatActivity() {
      * Show dialogs with messages or question to be shown to the user on startup.
      */
     private fun showStartupDialogs() {
-        // NOTE: the user will see the dialogs in reversed order as they are opened.
         val showGeneralWelcomeMessage = !Prefs.checkAndUpdateWelcomeMessageShown(this)
 
-        // Welcome message for new version (if not first launch of app) and Changelog
         val changeLog = ChangeLog(this)
         val isFirstRunOfVersion = changeLog.isFirstRun
         if (isFirstRunOfVersion) {
@@ -114,7 +112,6 @@ class RemindersListActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        // Intent content is not used
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -3,10 +3,8 @@ package com.example.housekeeper.core.data.source.local.di
 import android.content.Context
 import androidx.room.Room
 import com.example.housekeeper.core.data.repository.LocalDataSourceRepositoryImpl
-import com.example.housekeeper.core.data.source.local.dataSourse.CategoryLocalDataSource
 import com.example.housekeeper.core.data.source.local.dataSourse.ReminderLocalDataSource
 import com.example.housekeeper.core.data.source.local.dataSourse.TimerLocalDataSource
-import com.example.housekeeper.core.data.source.local.dataSourse.room.CategoryRoomDataSource
 import com.example.housekeeper.core.data.source.local.dataSourse.room.ReminderRoomDataSource
 import com.example.housekeeper.core.data.source.local.dataSourse.room.TimerRoomDataSource
 import com.example.housekeeper.core.data.source.local.db.HouseKeeperRoomDatabase
@@ -22,9 +20,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class LocalSourceModuleProvider {
-
-    @Provides
-    fun provideCategoryDao(database: HouseKeeperRoomDatabase) = database.categoryDao()
 
     @Provides
     fun provideReminderDao(database: HouseKeeperRoomDatabase) = database.reminderDao()
@@ -53,11 +48,6 @@ abstract class LocalSourceModuleBuilder {
     abstract fun bindReminderDataSource(
         reminderRoomDataSource: ReminderRoomDataSource
     ): ReminderLocalDataSource
-
-    @Binds
-    abstract fun bindCategoryDataSource(
-        categoryRoomDataSource: CategoryRoomDataSource
-    ): CategoryLocalDataSource
 
     @Binds
     abstract fun bindTimerDataSource(

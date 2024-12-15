@@ -1,9 +1,7 @@
 package com.example.housekeeper.core.data.repository
 
-import com.example.housekeeper.core.data.source.local.dataSourse.CategoryLocalDataSource
 import com.example.housekeeper.core.data.source.local.dataSourse.ReminderLocalDataSource
 import com.example.housekeeper.core.data.source.local.dataSourse.TimerLocalDataSource
-import com.example.housekeeper.core.domain.model.Category
 import com.example.housekeeper.core.domain.model.Reminder
 import com.example.housekeeper.core.domain.model.Timer
 import com.example.housekeeper.core.domain.repository.LocalDataSourceRepository
@@ -11,23 +9,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class LocalDataSourceRepositoryImpl @Inject constructor(
-    private val categoryDataSource: CategoryLocalDataSource,
     private val reminderDataSource: ReminderLocalDataSource,
     private val timerDataSource: TimerLocalDataSource
 ) : LocalDataSourceRepository {
-
-    // Category
-    override fun getAllCategoriesFlow() = categoryDataSource.getAllCategoriesFlow()
-
-    override fun getCategoryByIdFlow(id: Int) = categoryDataSource.getCategoryByIdFlow(id)
-
-    override suspend fun addCategory(category: Category) = categoryDataSource.addCategory(category)
-
-    override suspend fun updateCategory(category: Category) = categoryDataSource.updateCategory(category)
-
-    override suspend fun deleteCategory(category: Category) = categoryDataSource.deleteCategory(category)
-
-
     // Reminder
     override fun getAllRemindersFlow() = reminderDataSource.getAllRemindersFlow()
 

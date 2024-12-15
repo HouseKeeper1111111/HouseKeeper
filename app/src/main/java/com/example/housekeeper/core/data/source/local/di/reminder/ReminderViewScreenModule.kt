@@ -13,13 +13,13 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class ReminderViewScreenModule{
 
-    @Binds
-    abstract fun bindAddCategoryUseCase(
-        addCategoryUseCaseImpl: AddCategoryUseCaseImpl
-    ) : AddCategoryUseCase
-
-    @Binds
-    abstract fun  bindGetAllCategories(
-        getAllCategoriesUseCaseImpl: GetAllCategoriesUseCaseImpl
-    ) : GetAllCategoriesUseCase
+//    @Binds
+//    abstract fun bindAddCategoryUseCase(
+//        addCategoryUseCaseImpl: AddCategoryUseCaseImpl
+//    ) : AddCategoryUseCase
+//
+//    @Binds
+//    abstract fun  bindGetAllCategories(
+//        getAllCategoriesUseCaseImpl: GetAllCategoriesUseCaseImpl
+//    ) : GetAllCategoriesUseCase
 }

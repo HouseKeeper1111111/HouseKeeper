@@ -1,24 +1,10 @@
 package com.example.housekeeper.core.domain.repository
 
-import com.example.housekeeper.core.domain.model.Category
 import com.example.housekeeper.core.domain.model.Reminder
 import com.example.housekeeper.core.domain.model.Timer
 import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSourceRepository {
-
-    // Category
-    fun getAllCategoriesFlow(): Flow<List<Category>>
-
-    fun getCategoryByIdFlow(id: Int): Flow<Category>
-
-    suspend fun addCategory(category: Category)
-
-    suspend fun updateCategory(category: Category)
-
-    suspend fun deleteCategory(category: Category)
-
-
     // Reminder
     fun getAllRemindersFlow(): Flow<List<Reminder>>
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:icon="@android:drawable/ic_input_add"
+        android:shortcutId="addreminder"
+        android:shortcutShortLabel="@string/shortcut_add_reminder"
+        tools:ignore="UnusedAttribute"> <!-- Shortcuts only on API 25+ -->
+        <!--suppress AndroidDomInspection -->
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.example.myapplication.ui.AddReminderDialogActivity"
+            android:targetPackage="felixwiemuth.simplereminder.dev" />  <!-- NOTE: Must be set to application ID -->
+    </shortcut>
+
+</shortcuts>

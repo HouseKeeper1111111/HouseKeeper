@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style> body { font-family: sans-serif; } pre { background-color: #eeeeee; padding: 1em; white-space: pre-wrap; } </style>
+</head>
+<body>
+    <h3>Adding a reminder</h3>
+    <p>Reminders are added via the "Add reminder" dialog, which can be reached in the following ways:</p>
+    <ul>
+        <li>Click on the <b>launcher icon</b> "Add reminder"</li>
+        <li>Long-click on the launcher icon "SimpleReminder" and select "Add reminder"</li>
+        <li>Use the <b>Quick Settings tile</b> (has to be first added by clicking the "edit" symbol in the Quick Settings menu)</li>
+        <li>Click the "+" button in the reminders list</li>
+    </ul>
+    <p>Select a time using the clock widget and enter a message.
+    Initially, the selected time refers to the next occurrence of the hour/minute within the next 24 hours. If this is on the next day, this is indicated with a blue "+1" next to the displayed date.
+    To select a date more than 24 hours ahead, use the +/- buttons or click on the date.
+        The "+x" next to the date indicates how many days the selected date is ahead. The date is displayed in orange to indicate that it is chosen manually.</p>
+    <p>To add the reminder, either click the "Add" button on the keyboard (usually a button on the bottom right, with a symbol or titled "Add") or click "Add" at the bottom of the dialog.</p>
+    <p>After adding a reminder, the time until it is due is shown in hours and minutes (additional seconds are not displayed). If the reminder is at least 24 hours ahead, the number of (calendar) days and hours is shown (minutes are not shown and rounded towards the closest hour).</p>
+
+    <h3>Nagging reminders</h3>
+    <p>The switch next to the reminder text makes the reminder "nagging": when due, the notification will be renewed every x minutes, producing the same alert (sound, vibration, ...) as when first shown. This continues until the notification is dismissed.</p>
+
+    <p>The repeat interval for the current reminder can be adjusted by long-clicking the switch. The default value can be changed in the settings.</p>
+
+
+    <p>Currently there is no indication in the reminders list or the notification whether a reminder is nagging, this will be added later.</p>
+
+    <h3>Editing a reminder</h3>
+    To edit a reminder, either click on the notification or the entry in the reminders list.
+
+    <h3>Reminders list</h3>
+    <p>The reminders list can be reached via
+    <ul>
+        <li>The <b>launcher icon</b> "SimpleReminder"</li>
+        <li>Long-clicking on the "Add reminder" launcher icon and selecting "Show reminders"</li>
+        <li>Long-clicking on the <b>Quick Settings tile</b></li>
+    </ul>
+    </p>
+    <p>The reminders list shows all current and past reminders and allows to edit or reschedule them. In addition reminders can be marked as done or deleted. Long-click on a reminder to select it (and potentially further reminders) and see the available actions (a long click on an action symbol shows its name).</p>
+    <p>The list consists of three sections:</p>
+      <ul>
+        <li><b>Due reminders (yellow):</b> Reminders due according to the set time; a notification has been shown and the reminder has not been marked as done yet (e.g. by dismissing the notification)</li>
+        <li><b>Scheduled reminders (green):</b> Reminders with due date in the future, a notification will be shown when the due time is reached; this section is further divided into days for the next 7 days</li>
+        <li><b>Done reminders (grey):</b> Reminders for which the notification has been dismissed or which have been marked done manually</li>
+      </ul>
+
+      <h3>Do Not Disturb mode</h3>
+      By default, reminders should not be shown in Do Not Disturb mode (however, the notification can be seen as soon as Do Not Disturb is disabled). This behaviour can be changed in the system settings under Notifications -> Do Not Disturb -> Alarms and other interruptions. If you enable the category "Reminders", normal and nagging reminders will be shown even in Do Not Disturb mode, with sound and vibration as configured.
+
+
+      <h3>Configuration</h3>
+
+      <h4>Reminder dialog size</h4>
+      If the "Add reminder" dialog is too large or too small for your preferences, sizes of the clock widget and the time display can be changed under Settings -> Reminder dialog settings.
+
+      This can for instance be useful on small screens or with high keyboards, where too much of the dialog is hidden by the keyboard (even though in many cases it is still possible to use the dialog this way, for example by adding the reminder with the "Add" button on the keyboard).
+
+
+      <h3>Tips</h3>
+      <ul>
+          <li>To <b>test</b> how a reminder is shown, add a reminder without changing the date or time. The reminder will be shown immediately.</li>
+      </ul>
+
+
+</body>
+</html>
+
+

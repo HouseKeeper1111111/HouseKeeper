@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This file stores mappings for persistable enums and arrays of internal vs. displayed values. The names of the enum constants must be used here exactly as in the enum definition. -->
+<resources>
+    <string-array name="array_priority_names">
+        <item>@string/priority_min</item>
+        <item>@string/priority_low</item>
+        <item>@string/priority_default</item>
+        <item>@string/priority_high</item>
+        <item>@string/priority_max</item>
+    </string-array>
+    <!-- These are the constants from NotificationCompat.PRIORITY_* -->
+    <string-array name="array_priority_values">
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>

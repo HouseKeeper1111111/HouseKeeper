@@ -253,7 +253,7 @@ class RemindersListActivity : AppCompatActivity() {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> RemindersListFragment.newInstance()
-                1 -> TemplatesFragment.newInstance()
+                1 -> TimerFragment.newInstance()
                 else -> throw ImplementationError("Invalid tab number $position")
             }
         }

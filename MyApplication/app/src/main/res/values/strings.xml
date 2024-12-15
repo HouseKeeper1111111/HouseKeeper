@@ -124,6 +124,5 @@
     <!--<string name="acra_email">Enter your email for further enquiries</string>-->
     <string name="acra_prompt">Sorry, Housekeeper has crashed. Please send this report to the developer.</string>
     <string name="acra_comment_prompt">You can add a comment describing the situation of the crash.</string>
-
-    <string name="tmp_templates_fragment_coming_soon">Coming soon: Save frequent reminders and reschedule them even more quickly!</string>
+    <string name="default_timer">00:00:00</string>
 </resources>

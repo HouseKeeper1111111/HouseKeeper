@@ -8,6 +8,8 @@
     <color name="orange">#f7a33d</color>
     <color name="grey">#d1dad7</color>
     <color name="lightblue_transparent">#2800b7ff</color>
+    <color name="main_color">#E7DFED</color>
+
 
     <color name="bg_date_scheduled">@color/green</color>
     <color name="bg_date_notified">@color/yellow</color>

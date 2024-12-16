@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <activity
             android:name=".ui.reminderslist.RemindersListActivity"
             android:exported="true"
@@ -36,6 +37,14 @@
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts_main" />
+        </activity>
+        <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.SettingsActivity"

@@ -12,14 +12,14 @@ import com.example.myapplication.ReminderStorage.getReminder
 import com.example.myapplication.data.Reminder
 
 /**
- * Shows a dialog allowing to edit a reminder. Finishes with [.RESULT_OK] if the reminder has been edited.
+ * Shows a dialog allowing to edit a reminder. Finishes with [.RESULT_OK] if the reminder has been edited
  *
  *
- * Has to be started with the intent provided by [.getIntentEditReminder].
+ * Has to be started with the intent provided by [.getIntentEditReminder]
  */
 class EditReminderDialogActivity : ReminderDialogActivity() {
     /**
-     * The ID of the reminder to be updated.
+     * The ID of the reminder to be updated
      */
     private var reminderToUpdate = -1
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +30,7 @@ class EditReminderDialogActivity : ReminderDialogActivity() {
     }
 
     /**
-     * Process a new intent to this activity, replacing the current content with that of the reminder referenced by the new intent.
+     * Process a new intent to this activity, replacing the current content with that of the reminder referenced by the new intent
      *
      * @param intent
      */
@@ -40,7 +40,7 @@ class EditReminderDialogActivity : ReminderDialogActivity() {
     }
 
     /**
-     * Setup the state and UI of the activity based on the reminder referenced by the given intent.
+     * Setup the state and UI of the activity based on the reminder referenced by the given intent
      *
      * @param intent
      * @throws IllegalArgumentException if the intent has not the required extra

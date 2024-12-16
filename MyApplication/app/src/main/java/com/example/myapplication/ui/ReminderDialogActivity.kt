@@ -58,7 +58,7 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
 
     /**
      * The currently selected date. It is an invariant that after every user interaction this
-     * date is in the future (except initially, before changing time or date).
+     * date is in the future (except initially, before changing time or date)
      */
     private lateinit var selectedDate: Calendar
 
@@ -67,12 +67,12 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
 
     private enum class DateSelectionMode {
         /**
-         * The date is derived from the chosen time, so that this time lies within the next 24 hours.
+         * The date is derived from the chosen time, so that this time lies within the next 24 hours
          */
         NEXT24,
 
         /**
-         * The date is selected manually.
+         * The date is selected manually
          */
         MANUAL
     }
@@ -190,8 +190,8 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
     }
 
     /**
-     * Set the selected time to that of the given calendar, setting seconds to 0.
-     * Does not render the date/time display.
+     * Set the selected time to that of the given calendar, setting seconds to 0
+     * Does not render the date/time display
      *
      * @param calendar
      */
@@ -201,8 +201,8 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
     }
 
     /**
-     * Set the selected and displayed date/time to that of the given calendar (seconds are set to 0).
-     * Also sets the [.dateSelectionMode] based on whether the selected time lies within the next 24 hours.
+     * Set the selected and displayed date/time to that of the given calendar (seconds are set to 0)
+     * Also sets the [.dateSelectionMode] based on whether the selected time lies within the next 24 hours
      * Renders the result.
      *
      * @param calendar
@@ -234,7 +234,7 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
     /**
      * If the selected date is the current day, switch to NEXT24 mode and correct the date
      * to the next day if the currently selected time is in the past (as by definition of
-     * NEXT24 mode).
+     * NEXT24 mode)
      *
      * @return whether the selected date was the current day
      */
@@ -289,7 +289,7 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
     }
 
     /**
-     * Increment the date, set mode to MANUAL and render.
+     * Increment the date, set mode to MANUAL and render
      */
     private fun incrementDateAction() {
         dateSelectionMode = DateSelectionMode.MANUAL
@@ -324,7 +324,7 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
     /**
      * Display day and month of [.selectedDate] in [.dateDisplay] and the number of calendar days
      * this date lies ahead. If [.dateSelectionMode] is [DateSelectionMode.MANUAL], show
-     * everything in orange, otherwise show the "+1" (for "one day ahead" if applicable) in accent color.
+     * everything in orange, otherwise show the "+1" (for "one day ahead" if applicable) in accent color
      */
     private fun renderSelectedDate() {
         val diff = diffSelectedDate
@@ -388,7 +388,7 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
     }
 
     /**
-     * Action to be executed on hitting the main "Add" or "OK" button.
+     * Action to be executed on hitting the main "Add" or "OK" button
      */
     protected abstract fun onDone()
     protected fun makeToast(reminder: Reminder) {
@@ -423,7 +423,7 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
     }
 
     /**
-     * Finish the activity with RESULT_OK, removing the task on Lollipop and above.
+     * Finish the activity with RESULT_OK, removing the task on Lollipop and above
      */
     protected fun completeActivity() {
         setResult(RESULT_OK)
@@ -435,7 +435,7 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
     }
 
     /**
-     * Adapt the time picker layout according to user's set preferences.
+     * Adapt the time picker layout according to user's set preferences
      */
     private fun adaptTimePickerLayout() {
         // Removing the whole layout with the toggle button if present (it exists from Android 8.0 on) and disabled by user
@@ -474,8 +474,8 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
             timePicker.findViewById<View>(
                 Resources.getSystem().getIdentifier("time_header", "id", "android")
             )?.let { timeHeader ->
-                // Adapting the size of all text in the time header (also the AM/PM labels in 12-hour mode).
-                // Note that the numbers also serve as buttons to switch between hour and minute selection.
+                // Adapting the size of all text in the time header (also the AM/PM labels in 12-hour mode)
+                // Note that the numbers also serve as buttons to switch between hour and minute selection
 
                 // In default resource: 60dp
                 val timeHeaderTextSize = TypedValue.applyDimension(
@@ -509,8 +509,8 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
                         ?.let { it.textSize = textSizeAmPmLabel }
                 }
 
-                // Making the height adapt to the changed font size (however, MATCH_PARENT also seems to work)
-                // Note: This expects a LinearLayout.LayoutParams despite the parameter type
+                // Making the height adapt to the changed font size (however, MATCH_PARENT also seems to work).
+                // Note: This expects a LinearLayout.LayoutParams despite the parameter type.
                 timeHeader.layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -518,7 +518,7 @@ abstract class ReminderDialogActivity : AppCompatActivity() {
 
                 val layoutParams = timeHeader.layoutParams as LinearLayout.LayoutParams
                 layoutParams.bottomMargin =
-                    16 // 16dp is used both as bottom of time header layout and top of time picker, but 16 in total is more symmetric
+                    16 // 16dp is used both as bottom of time header layout and top of time picker, but 16 in total is more symmetric.
             }
 
             // Changing the height of the TimePicker

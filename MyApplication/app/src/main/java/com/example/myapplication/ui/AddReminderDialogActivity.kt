@@ -6,7 +6,7 @@ import com.example.myapplication.R
 import com.example.myapplication.ReminderManager.addReminder
 
 /**
- * Shows a dialog allowing to add a reminder. Finishes with [.RESULT_OK] if the reminder has been added.
+ * Shows a dialog allowing to add a reminder. Finishes with [.RESULT_OK] if the reminder has been added
  */
 class AddReminderDialogActivity : ReminderDialogActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

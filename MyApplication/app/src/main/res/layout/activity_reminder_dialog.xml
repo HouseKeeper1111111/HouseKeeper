@@ -38,9 +38,7 @@
         android:tooltipText="@string/add_reminder_nagging_tooltip"
          />
 
-    <!-- Note: There are no margins between the AutoCompleteTextView and this layout;
-         the AutoCompleteTextView and the buttons have a certain space
-         surrounding them. -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dateContainer"
         android:layout_width="match_parent"

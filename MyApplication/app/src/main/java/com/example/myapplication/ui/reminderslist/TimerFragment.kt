@@ -1,6 +1,12 @@
 package com.example.myapplication.ui.reminderslist
 
 import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.pm.PackageManager
+import android.media.RingtoneManager
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -10,11 +16,16 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.NumberPicker
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 import java.util.Locale
 
 class TimerFragment : Fragment() {
+
+    private val CHANNEL_ID = "timer_channel_id"
 
     private var timer: CountDownTimer? = null
     private lateinit var textViewTimer: TextView
@@ -36,6 +47,8 @@ class TimerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        createNotificationChannel()
+
         val view = inflater.inflate(R.layout.fragment_timer, container, false)
 
         // Инициализация компонентов
@@ -104,6 +117,7 @@ class TimerFragment : Fragment() {
 
             override fun onFinish() {
                 textViewTimer.text = getString(R.string.default_timer)
+                sendTimerNotification()
             }
         }.start()
     }
@@ -172,6 +186,50 @@ class TimerFragment : Fragment() {
             .setNegativeButton("Отмена", null)
             .show()
     }
+
+    private fun createNotificationChannel() {
+        val name = "Timer Notifications"
+        val descriptionText = "Уведомления по таймеру"
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+            description = descriptionText
+        }
+
+        val notificationManager: NotificationManager =
+            requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
+
+    private fun sendTimerNotification() {
+        val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+        val vibrationPattern = longArrayOf(0, 500, 1000, 500)
+
+        checkAndRequestNotificationPermission()
+
+        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+            .setSmallIcon(R.drawable.housekeeper_icon)
+            .setContentTitle("Таймер завершён")
+            .setContentText("Ваш таймер подошёл к концу.")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .setSound(soundUri)
+            .setVibrate(vibrationPattern)
+
+        NotificationManagerCompat.from(requireContext()).notify(1, builder.build())
+    }
+
+    private fun checkAndRequestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    android.Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1)
+            }
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

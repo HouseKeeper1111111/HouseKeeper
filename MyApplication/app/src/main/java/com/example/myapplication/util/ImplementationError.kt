@@ -1,4 +1,4 @@
-package com.example.myapplication.util;
+package com.example.myapplication.util
 
 /**
  * Indicates that the application is in a state which is illegal according to its design. This is
@@ -6,19 +6,12 @@ package com.example.myapplication.util;
  *
  * @author Felix Wiemuth
  */
-public class ImplementationError extends RuntimeException {
-    public ImplementationError() {
-    }
+class ImplementationError : RuntimeException {
+    constructor()
 
-    public ImplementationError(String message) {
-        super(message);
-    }
+    constructor(message: String?) : super(message)
 
-    public ImplementationError(String message, Throwable cause) {
-        super(message, cause);
-    }
+    constructor(message: String?, cause: Throwable?) : super(message, cause)
 
-    public ImplementationError(Throwable cause) {
-        super(cause);
-    }
+    constructor(cause: Throwable?) : super(cause)
 }

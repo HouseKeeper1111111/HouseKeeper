@@ -1,232 +1,22 @@
-package com.example.myapplication.util;
+package com.example.myapplication.util
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.text.format.DateUtils;
-
-import androidx.annotation.NonNull;
-
-import com.example.myapplication.R;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
+import android.annotation.SuppressLint
+import android.content.Context
+import android.text.format.DateUtils
+import com.example.myapplication.R
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 /**
  * Utilities for formatting and calculation with date and time.
  * Note that we cannot use java.time because it requires API 26.
  */
-public class DateTimeUtil {
-    private static DateFormat dfDateTime;
-    private static DateFormat dfDate;
-    private static DateFormat dfTime;
-
-    /**
-     * Represents a duration in days, hours and minutes and whether it is a positive or negative duration.
-     */
-    public static class Duration {
-        /**
-         * Which unit to round to.
-         */
-        public enum Resolution {
-            DAYS,
-            HOURS,
-            MINUTES,
-            /**
-             * Like {@link #MINUTES} if number of days is zero, like {@link #HOURS} otherwise.
-             */
-            MINUTES_IF_0_DAYS
-        }
-
-        /**
-         * How to round to the next unit.
-         */
-        public enum RoundingMode {
-            /**
-             * Round towards closest (up when same difference).
-             */
-            CLOSEST,
-            DOWN,
-            UP
-        }
-
-        private final long days;
-        private final long hours;
-        private final int minutes;
-        private final boolean positive;
-
-        /**
-         * Create a positive duration with 0 days.
-         *
-         * @param hours
-         * @param minutes
-         * @see #Duration(long, long, int, boolean)
-         */
-        public Duration(long hours, int minutes) {
-            this(0, hours, minutes, true);
-        }
-
-        /**
-         * Create a duration with 0 days.
-         * @param hours
-         * @param minutes
-         * @param positive
-         * @see #Duration(long, long, int, boolean)
-         */
-        public Duration(long hours, int minutes, boolean positive) {
-            this(0, hours, minutes, positive);
-        }
-
-        /**
-         * Create a positive duration.
-         *
-         * @param days
-         * @param hours
-         * @param minutes
-         * @see #Duration(long, long, int, boolean)
-         */
-        public Duration(long days, long hours, int minutes) {
-            this(days, hours, minutes, true);
-        }
-
-        /**
-         * Create a duration. All fields must be non-negative numbers.
-         *
-         * @param days
-         * @param hours
-         * @param minutes
-         * @param positive
-         */
-        public Duration(long days, long hours, int minutes, boolean positive) {
-            this.days = days;
-            this.hours = hours;
-            this.minutes = minutes;
-            this.positive = positive;
-        }
-
-        public long getDays() {
-            return days;
-        }
-
-        public long getHours() {
-            return hours;
-        }
-
-        public int getMinutes() {
-            return minutes;
-        }
-
-        /**
-         * Whether the duration is declared positive.
-         *
-         * @return
-         */
-        public boolean isPositive() {
-            return positive;
-        }
-
-        /**
-         * Whether days, hours and minutes are all zero.
-         * @return
-         */
-        public boolean isZero() {
-            return days == 0 && hours == 0 && minutes == 0;
-        }
-
-
-        /**
-         * Get a textual description of the duration with the possibility to round.
-         * If {@code isZero() == true}, the empty string is returned.
-         *
-         * @param resolution which units to show, see {@link Resolution}
-         * @param roundingMode how to round, see {@link RoundingMode}
-         * @param context
-         */
-        public String toString(Resolution resolution, RoundingMode roundingMode, Context context) {
-            int printMinutes = minutes;
-            long printHours = hours;
-            long printDays = days;
-            // Apply rounding: set those units to 0 which should be rounded away.
-            if (resolution == Resolution.HOURS || resolution == Resolution.MINUTES_IF_0_DAYS && days > 0) {
-                printMinutes = 0;
-                if (roundingMode == RoundingMode.UP && minutes > 0 || roundingMode == RoundingMode.CLOSEST && minutes >= 30) {
-                    printHours++;
-                    if (printHours == 24) {
-                        printDays += 1;
-                        printHours -= 24;
-                    }
-                }
-            } else if (resolution == Resolution.DAYS) {
-                printMinutes = 0;
-                printHours = 0;
-                if (roundingMode == RoundingMode.UP && hours > 0 || roundingMode == RoundingMode.CLOSEST && hours >= 12) {
-                    printDays++;
-                }
-            }
-            StringBuilder sb = new StringBuilder();
-            boolean lastConjunctionUsed = false; // Whether the conjunction to be used between the last two units has been used
-            if (printMinutes != 0) {
-                sb.insert(0, formatMinutes(printMinutes, context));
-            }
-            if (printHours != 0) {
-                lastConjunctionUsed = insertConjunction(lastConjunctionUsed, sb, context);
-                sb.insert(0, formatHours(printHours, context));
-            }
-            if (printDays != 0) {
-                lastConjunctionUsed = insertConjunction(lastConjunctionUsed, sb, context);
-                sb.insert(0, formatDays(printDays, context));
-            }
-            return sb.toString();
-        }
-
-        private static boolean insertConjunction(boolean lastConjunctionUsed, StringBuilder sb, Context context) {
-            if (sb.length() != 0) {
-                if (lastConjunctionUsed) {
-                    sb.insert(0, context.getString(R.string.duration_conjunction));
-                } else {
-                    sb.insert(0, context.getString(R.string.duration_conjunction_last));
-                }
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            Duration that = (Duration) o;
-
-            if (days != that.days) return false;
-            if (hours != that.hours) return false;
-            if (minutes != that.minutes) return false;
-            return positive == that.positive;
-        }
-
-        // Generated by IntelliJ
-        @Override
-        public int hashCode() {
-            int result = (int) (days ^ (days >>> 32));
-            result = 31 * result + (int) (hours ^ (hours >>> 32));
-            result = 31 * result + minutes;
-            result = 31 * result + (positive ? 1 : 0);
-            return result;
-        }
-
-        @NonNull
-        @Override
-        public String toString() {
-            return "DurationHoursMinutes{" +
-                    "days=" + days +
-                    ", hours=" + hours +
-                    ", minutes=" + minutes +
-                    ", positive=" + positive +
-                    '}';
-        }
-    }
+object DateTimeUtil {
+    private var dfDateTime: DateFormat? = null
+    private var dfDate: DateFormat? = null
+    private var dfTime: DateFormat? = null
 
     /**
      * Format the given amount of minutes (e.g. "0 minutes", "1 minute").
@@ -236,11 +26,11 @@ public class DateTimeUtil {
      * @param context
      * @return
      */
-    public static String formatMinutes(long minutes, Context context) {
-        if (minutes == 1) {
-            return context.getString(R.string.duration_minute, minutes);
+    fun formatMinutes(minutes: Long, context: Context): String {
+        return if (minutes == 1L) {
+            context.getString(R.string.duration_minute, minutes)
         } else {
-            return context.getString(R.string.duration_minutes, minutes);
+            context.getString(R.string.duration_minutes, minutes)
         }
     }
 
@@ -252,11 +42,11 @@ public class DateTimeUtil {
      * @param context
      * @return
      */
-    public static String formatHours(long hours, Context context) {
-        if (hours == 1) {
-            return context.getString(R.string.duration_hour, hours);
+    fun formatHours(hours: Long, context: Context): String {
+        return if (hours == 1L) {
+            context.getString(R.string.duration_hour, hours)
         } else {
-            return context.getString(R.string.duration_hours, hours);
+            context.getString(R.string.duration_hours, hours)
         }
     }
 
@@ -268,66 +58,77 @@ public class DateTimeUtil {
      * @param context
      * @return
      */
-    public static String formatDays(long days, Context context) {
-        if (days == 1) {
-            return context.getString(R.string.duration_day, days);
+    fun formatDays(days: Long, context: Context): String {
+        return if (days == 1L) {
+            context.getString(R.string.duration_day, days)
         } else {
-            return context.getString(R.string.duration_days, days);
+            context.getString(R.string.duration_days, days)
         }
     }
 
-    private static DateFormat getDateTimeFormat() {
-        if (dfDateTime == null) {
-            dfDateTime = DateFormat.getDateTimeInstance();
+    private val dateTimeFormat: DateFormat?
+        get() {
+            if (dfDateTime == null) {
+                dfDateTime = DateFormat.getDateTimeInstance()
+            }
+            return dfDateTime
         }
-        return dfDateTime;
-    }
 
 
-    @SuppressLint("SimpleDateFormat")
-    private static DateFormat getTimeFormat() {
-        if (dfTime == null) {
-            dfTime = new SimpleDateFormat("HH:mm");
-            DateFormat.getTimeInstance(DateFormat.MEDIUM);
+    @get:SuppressLint("SimpleDateFormat")
+    private val timeFormat: DateFormat?
+        get() {
+            if (dfTime == null) {
+                dfTime = SimpleDateFormat("HH:mm")
+                DateFormat.getTimeInstance(DateFormat.MEDIUM)
+            }
+            return dfTime
         }
-        return dfTime;
-    }
 
 
-    private static DateFormat getDateFormat() {
-        if (dfDate == null) {
-            dfDate = DateFormat.getDateInstance(DateFormat.MEDIUM);
+    private val dateFormat: DateFormat?
+        get() {
+            if (dfDate == null) {
+                dfDate = DateFormat.getDateInstance(DateFormat.MEDIUM)
+            }
+            return dfDate
         }
-        return dfDate;
-    }
 
     /**
      * Used to compare whether two dates are on the same day:
      */
-    private static SimpleDateFormat dfCompareDay;
+    private var dfCompareDay: SimpleDateFormat? = null
 
     @SuppressLint("SimpleDateFormat")
-    private static SimpleDateFormat getDfCompareDay() {
+    private fun getDfCompareDay(): SimpleDateFormat {
         if (dfCompareDay == null) {
-            dfCompareDay = new SimpleDateFormat("ddMMyyyy");
+            dfCompareDay = SimpleDateFormat("ddMMyyyy")
         }
-        return dfCompareDay;
+        return dfCompareDay!!
     }
 
-    public static String formatDateTime(Date date) {
-        return getDateTimeFormat().format(date);
+    fun formatDateTime(date: Date?): String {
+        return dateTimeFormat!!.format(date)
     }
 
-    public static String formatDate(Context context, Date date) {
-        return DateUtils.formatDateTime(context, date.getTime(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL);
+    fun formatDate(context: Context?, date: Date): String {
+        return DateUtils.formatDateTime(
+            context,
+            date.time,
+            DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_NO_YEAR or DateUtils.FORMAT_ABBREV_ALL
+        )
     }
 
-    public static String formatDateWithDayOfWeek(Context context, Date date) {
-        return DateUtils.formatDateTime(context, date.getTime(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_NO_YEAR | DateUtils.FORMAT_ABBREV_ALL);
+    fun formatDateWithDayOfWeek(context: Context?, date: Date): String {
+        return DateUtils.formatDateTime(
+            context,
+            date.time,
+            DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_NO_YEAR or DateUtils.FORMAT_ABBREV_ALL
+        )
     }
 
-    public static String formatTime(Date date) {
-        return getTimeFormat().format(date);
+    fun formatTime(date: Date?): String {
+        return timeFormat!!.format(date)
     }
 
     /**
@@ -337,8 +138,8 @@ public class DateTimeUtil {
      * @param d2
      * @return
      */
-    public static boolean isSameDay(Date d1, Date d2) {
-        return getDfCompareDay().format(d1).equals(dfCompareDay.format(d2));
+    fun isSameDay(d1: Date?, d2: Date?): Boolean {
+        return getDfCompareDay().format(d1) == dfCompareDay!!.format(d2)
     }
 
     /**
@@ -347,8 +148,8 @@ public class DateTimeUtil {
      * @param d
      * @return
      */
-    public static boolean isToday(Date d) {
-        return isSameDay(d, new Date());
+    fun isToday(d: Date?): Boolean {
+        return isSameDay(d, Date())
     }
 
     /**
@@ -357,33 +158,33 @@ public class DateTimeUtil {
      * @param date
      * @return
      */
-    public static Calendar getDateAtMidnight(Calendar date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date.getTime());
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal;
+    fun getDateAtMidnight(date: Calendar): Calendar {
+        val cal = Calendar.getInstance()
+        cal.time = date.time
+        cal[Calendar.HOUR_OF_DAY] = 0
+        cal[Calendar.MINUTE] = 0
+        cal[Calendar.SECOND] = 0
+        cal[Calendar.MILLISECOND] = 0
+        return cal
     }
 
     /**
      * Given two dates, calculates how often the day (number) is incremented from the first to the second.
      * Based on https://stackoverflow.com/a/6406294.
      */
-    public static long dayChangesBetween(Calendar start, Calendar end) {
-        if (isSameDay(start.getTime(), end.getTime())) {
-            return 0;
+    fun dayChangesBetween(start: Calendar, end: Calendar): Long {
+        if (isSameDay(start.time, end.time)) {
+            return 0
         }
 
-        Calendar d = getDateAtMidnight(start);
-        Calendar e = getDateAtMidnight(end);
-        long dayChanges = 0;
+        val d = getDateAtMidnight(start)
+        val e = getDateAtMidnight(end)
+        var dayChanges: Long = 0
         while (d.before(e)) {
-            d.add(Calendar.DAY_OF_MONTH, 1);
-            dayChanges++;
+            d.add(Calendar.DAY_OF_MONTH, 1)
+            dayChanges++
         }
-        return dayChanges;
+        return dayChanges
     }
 
     /**
@@ -395,19 +196,19 @@ public class DateTimeUtil {
      * @param end   end time in milliseconds
      * @return
      */
-    public static Duration hoursMinutesBetween(long start, long end) {
-        if (start <= end) {
-            return hoursMinutesBetween_(start, end, true);
+    fun hoursMinutesBetween(start: Long, end: Long): Duration {
+        return if (start <= end) {
+            hoursMinutesBetween_(start, end, true)
         } else {
-            return hoursMinutesBetween_(end, start, false);
+            hoursMinutesBetween_(end, start, false)
         }
     }
 
-    private static Duration hoursMinutesBetween_(long start, long end, boolean positive) {
-        long seconds = (end - start) / 1000;
-        long hours = seconds / 3600;
-        long minutes = (seconds - hours * 3600) / 60;
-        return new Duration(hours, (int) minutes, positive);
+    private fun hoursMinutesBetween_(start: Long, end: Long, positive: Boolean): Duration {
+        val seconds = (end - start) / 1000
+        val hours = seconds / 3600
+        val minutes = (seconds - hours * 3600) / 60
+        return Duration(hours, minutes.toInt(), positive)
     }
 
     /**
@@ -416,44 +217,225 @@ public class DateTimeUtil {
      * This only has relevance regarding daylight saving time and means that the last 24 hours are interpreted as one day and that when clocks are set back by one hour it is possible to get a duration like "1 day, 24 hours, 50 minutes".
      *
      * @param start
-     * @param end   Must be after {@code start} and the day changes between the two dates must not exceed {@link Integer#MAX_VALUE}.
+     * @param end   Must be after `start` and the day changes between the two dates must not exceed [Integer.MAX_VALUE].
      * @return
      * @throws IllegalArgumentException if any precondition is violated
      */
-    public static Duration daysHoursMinutesBetween(Calendar start, Calendar end) throws IllegalArgumentException {
+    @Throws(IllegalArgumentException::class)
+    fun daysHoursMinutesBetween(start: Calendar, end: Calendar): Duration {
         /*
          * Check preconditions
          */
-        if (!start.before(end)) {
-            throw new IllegalArgumentException("Negative duration");
-        }
+        require(start.before(end)) { "Negative duration" }
 
-        long dayChangesLong = dayChangesBetween(start, end);
-        if (dayChangesLong > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("Duration too large");
-        }
-        int dayChanges = (int) dayChangesLong;
+        val dayChangesLong = dayChangesBetween(start, end)
+        require(dayChangesLong <= Int.MAX_VALUE) { "Duration too large" }
+        val dayChanges = dayChangesLong.toInt()
 
         /*
          * Calculate number of days, hours and minutes.
          */
-        int days = 0;
+        var days = 0
         // 'end' after subtracting days so that dayChanges <= 1; i.e., duration between start and newEnd is less than 1 day and 24 hours (except for days with more than 24 hours)
-        Calendar newEnd = Calendar.getInstance();
-        newEnd.setTime(end.getTime());
+        val newEnd = Calendar.getInstance()
+        newEnd.time = end.time
         if (dayChanges > 1) {
-            days = dayChanges - 1;
-            newEnd.add(Calendar.DAY_OF_MONTH, -days);
+            days = dayChanges - 1
+            newEnd.add(Calendar.DAY_OF_MONTH, -days)
         }
 
-        Duration duration = hoursMinutesBetween(start.getTime().getTime(), newEnd.getTime().getTime());
-        int hours = (int) duration.getHours(); // always less than the equivalent of two days
-        int minutes = duration.getMinutes();
+        val duration = hoursMinutesBetween(start.time.time, newEnd.time.time)
+        var hours = duration.hours.toInt() // always less than the equivalent of two days
+        val minutes = duration.minutes
         // Here we call potentially remaining 24 hours one day.
         if (hours >= 24) {
-            days++;
-            hours -= 24;
+            days++
+            hours -= 24
         }
-        return new Duration(days, hours, minutes, duration.isPositive());
+        return Duration(
+            days.toLong(), hours.toLong(), minutes,
+            duration.isPositive
+        )
+    }
+
+    /**
+     * Represents a duration in days, hours and minutes and whether it is a positive or negative duration.
+     */
+    class Duration
+    /**
+     * Create a positive duration.
+     *
+     * @param days
+     * @param hours
+     * @param minutes
+     * @see .Duration
+     */ @JvmOverloads constructor(
+        val days: Long, val hours: Long, val minutes: Int,
+        /**
+         * Whether the duration is declared positive.
+         *
+         * @return
+         */
+        val isPositive: Boolean = true
+    ) {
+        /**
+         * Which unit to round to.
+         */
+        enum class Resolution {
+            DAYS,
+            HOURS,
+            MINUTES,
+
+            /**
+             * Like [.MINUTES] if number of days is zero, like [.HOURS] otherwise.
+             */
+            MINUTES_IF_0_DAYS
+        }
+
+        /**
+         * How to round to the next unit.
+         */
+        enum class RoundingMode {
+            /**
+             * Round towards closest (up when same difference).
+             */
+            CLOSEST,
+            DOWN,
+            UP
+        }
+
+        /**
+         * Create a positive duration with 0 days.
+         *
+         * @param hours
+         * @param minutes
+         * @see .Duration
+         */
+        constructor(hours: Long, minutes: Int) : this(0, hours, minutes, true)
+
+        /**
+         * Create a duration with 0 days.
+         * @param hours
+         * @param minutes
+         * @param positive
+         * @see .Duration
+         */
+        constructor(hours: Long, minutes: Int, positive: Boolean) : this(
+            0,
+            hours,
+            minutes,
+            positive
+        )
+
+        /**
+         * Create a duration. All fields must be non-negative numbers.
+         *
+         * @param days
+         * @param hours
+         * @param minutes
+         * @param isPositive
+         */
+
+        val isZero: Boolean
+            /**
+             * Whether days, hours and minutes are all zero.
+             * @return
+             */
+            get() = days == 0L && hours == 0L && minutes == 0
+
+
+        /**
+         * Get a textual description of the duration with the possibility to round.
+         * If `isZero() == true`, the empty string is returned.
+         *
+         * @param resolution which units to show, see [Resolution]
+         * @param roundingMode how to round, see [RoundingMode]
+         * @param context
+         */
+        fun toString(resolution: Resolution, roundingMode: RoundingMode, context: Context): String {
+            var printMinutes = minutes
+            var printHours = hours
+            var printDays = days
+            // Apply rounding: set those units to 0 which should be rounded away.
+            if (resolution == Resolution.HOURS || resolution == Resolution.MINUTES_IF_0_DAYS && days > 0) {
+                printMinutes = 0
+                if (roundingMode == RoundingMode.UP && minutes > 0 || roundingMode == RoundingMode.CLOSEST && minutes >= 30) {
+                    printHours++
+                    if (printHours == 24L) {
+                        printDays += 1
+                        printHours -= 24
+                    }
+                }
+            } else if (resolution == Resolution.DAYS) {
+                printMinutes = 0
+                printHours = 0
+                if (roundingMode == RoundingMode.UP && hours > 0 || roundingMode == RoundingMode.CLOSEST && hours >= 12) {
+                    printDays++
+                }
+            }
+            val sb = StringBuilder()
+            var lastConjunctionUsed =
+                false // Whether the conjunction to be used between the last two units has been used
+            if (printMinutes != 0) {
+                sb.insert(0, formatMinutes(printMinutes.toLong(), context))
+            }
+            if (printHours != 0L) {
+                lastConjunctionUsed = insertConjunction(lastConjunctionUsed, sb, context)
+                sb.insert(0, formatHours(printHours, context))
+            }
+            if (printDays != 0L) {
+                lastConjunctionUsed = insertConjunction(lastConjunctionUsed, sb, context)
+                sb.insert(0, formatDays(printDays, context))
+            }
+            return sb.toString()
+        }
+
+        override fun equals(o: Any?): Boolean {
+            if (this === o) return true
+            if (o == null || javaClass != o.javaClass) return false
+
+            val that = o as Duration
+
+            if (days != that.days) return false
+            if (hours != that.hours) return false
+            if (minutes != that.minutes) return false
+            return isPositive == that.isPositive
+        }
+
+        // Generated by IntelliJ
+        override fun hashCode(): Int {
+            var result = (days xor (days ushr 32)).toInt()
+            result = 31 * result + (hours xor (hours ushr 32)).toInt()
+            result = 31 * result + minutes
+            result = 31 * result + (if (isPositive) 1 else 0)
+            return result
+        }
+
+        override fun toString(): String {
+            return "DurationHoursMinutes{" +
+                    "days=" + days +
+                    ", hours=" + hours +
+                    ", minutes=" + minutes +
+                    ", positive=" + isPositive +
+                    '}'
+        }
+
+        companion object {
+            private fun insertConjunction(
+                lastConjunctionUsed: Boolean,
+                sb: StringBuilder,
+                context: Context
+            ): Boolean {
+                if (sb.isNotEmpty()) {
+                    if (lastConjunctionUsed) {
+                        sb.insert(0, context.getString(R.string.duration_conjunction))
+                    } else {
+                        sb.insert(0, context.getString(R.string.duration_conjunction_last))
+                    }
+                    return true
+                }
+                return false
+            }
+        }
     }
 }

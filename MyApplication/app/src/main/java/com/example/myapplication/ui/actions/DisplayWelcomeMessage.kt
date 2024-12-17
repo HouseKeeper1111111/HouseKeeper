@@ -1,24 +1,18 @@
-package com.example.myapplication.ui.actions;
+package com.example.myapplication.ui.actions
 
-import android.content.Context;
-
-import com.example.myapplication.ui.util.HtmlDialogFragment;
-
-import java.util.List;
-
-import com.example.myapplication.Main;
+import android.content.Context
+import com.example.myapplication.Main.Companion.showWelcomeMessage
+import com.example.myapplication.ui.util.HtmlDialogFragment
 
 /**
  * Displays the general welcome message.
  */
-public class DisplayWelcomeMessage implements HtmlDialogFragment.Action {
-    @Override
-    public String getName() {
-        return "display_welcome_message";
+class DisplayWelcomeMessage : HtmlDialogFragment.Action {
+    override fun getName(): String {
+        return "display_welcome_message"
     }
 
-    @Override
-    public void run(List<String> args, Context context) {
-        Main.showWelcomeMessage(context);
+    override fun run(args: List<String>, context: Context) {
+        showWelcomeMessage(context)
     }
 }

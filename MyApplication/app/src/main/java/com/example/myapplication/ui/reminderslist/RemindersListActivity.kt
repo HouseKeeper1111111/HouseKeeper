@@ -34,7 +34,6 @@ import com.example.myapplication.Main
 import com.example.myapplication.ui.AddReminderDialogActivity
 import com.example.myapplication.ui.SettingsActivity
 import com.example.myapplication.ui.util.UIUtils
-import org.acra.mail.BuildConfig
 
 class RemindersListActivity : AppCompatActivity() {
 
@@ -136,7 +135,7 @@ class RemindersListActivity : AppCompatActivity() {
             }
 
             R.id.action_about -> {
-                val title = getString(R.string.app_name) + " " + BuildConfig.VERSION_NAME
+                val title = getString(R.string.app_name) + " 1.0.0"
                 HtmlDialogFragment.displayHtmlDialogFragment(
                     supportFragmentManager,title, R.raw.about,
                     DisplayChangeLog::class.java,

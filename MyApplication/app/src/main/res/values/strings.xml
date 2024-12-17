@@ -76,7 +76,7 @@
     <string name="preference_nagging_repeat_interval">Default repeat interval for nagging reminders</string>
     <string name="preference_nagging_repeat_interval_format_error">The repeat interval must be a positive number of minutes</string>
     <string name="preference_notification_channel_settings">Change notification settings</string>
-    <string name="preference_notification_time_display">Displayed time in notifications</string>
+    <string name="preference_notification_time_display">Crush test</string>
     <string name="preference_category_notifications_display">Display original due time in notification (instead of time when notification is shown)</string>
     <string name="preference_display_original_due_time_normal">First time</string>
     <string name="preference_display_original_due_time_nag">Nag</string>

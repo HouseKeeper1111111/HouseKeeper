@@ -28,18 +28,18 @@ class TimerFragment : Fragment() {
     private val CHANNEL_ID = "timer_channel_id"
 
     private var timer: CountDownTimer? = null
-    private lateinit var textViewTimer: TextView
+    lateinit var textViewTimer: TextView
     private lateinit var buttonStart: Button
     private lateinit var buttonPause: Button
     private lateinit var buttonStop: Button
     private lateinit var buttonSave: Button
-    private lateinit var pickerHours: NumberPicker
-    private lateinit var pickerMinutes: NumberPicker
-    private lateinit var pickerSeconds: NumberPicker
+    lateinit var pickerHours: NumberPicker
+    lateinit var pickerMinutes: NumberPicker
+    lateinit var pickerSeconds: NumberPicker
     private lateinit var quickTimersContainer: LinearLayout
 
-    private val savedTimers = mutableListOf<Long>()
-    private var remainingTimeInMillis: Long = 0
+    val savedTimers = mutableListOf<Long>()
+    var remainingTimeInMillis: Long = 0
     private var isPaused = false
 
     override fun onCreateView(
@@ -51,7 +51,6 @@ class TimerFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_timer, container, false)
 
-        // Инициализация компонентов
         textViewTimer = view.findViewById(R.id.textView_timer)
         buttonStart = view.findViewById(R.id.button_start_timer)
         buttonPause = view.findViewById(R.id.button_pause_timer)
@@ -104,7 +103,7 @@ class TimerFragment : Fragment() {
         }
     }
 
-    private fun startTimer(durationInMillis: Long) {
+    fun startTimer(durationInMillis: Long) {
         timer?.cancel()
         timer = object : CountDownTimer(durationInMillis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -122,19 +121,19 @@ class TimerFragment : Fragment() {
         }.start()
     }
 
-    private fun pauseTimer() {
+    fun pauseTimer() {
         timer?.cancel()
         isPaused = true
     }
 
-    private fun stopTimer() {
+    fun stopTimer() {
         timer?.cancel()
         remainingTimeInMillis = 0
         isPaused = false
         textViewTimer.text = getString(R.string.default_timer)
     }
 
-    private fun saveTimer() {
+    fun saveTimer() {
         val hours = pickerHours.value
         val minutes = pickerMinutes.value
         val seconds = pickerSeconds.value
@@ -146,7 +145,7 @@ class TimerFragment : Fragment() {
         }
     }
 
-    private fun addQuickTimerButton(timeInMillis: Long) {
+    fun addQuickTimerButton(timeInMillis: Long) {
         val button = Button(requireContext())
         val seconds = (timeInMillis / 1000) % 60
         val minutes = (timeInMillis / 1000) / 60 % 60
@@ -165,7 +164,7 @@ class TimerFragment : Fragment() {
         quickTimersContainer.addView(button)
     }
 
-    private fun setTimerFromQuickAccess(timeInMillis: Long) {
+    fun setTimerFromQuickAccess(timeInMillis: Long) {
         val seconds = (timeInMillis / 1000) % 60
         val minutes = (timeInMillis / 1000) / 60 % 60
         val hours = (timeInMillis / 1000) / 3600
@@ -200,7 +199,7 @@ class TimerFragment : Fragment() {
         notificationManager.createNotificationChannel(channel)
     }
 
-    private fun sendTimerNotification() {
+    fun sendTimerNotification() {
         val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         val vibrationPattern = longArrayOf(0, 500, 1000, 500)
 
@@ -218,7 +217,7 @@ class TimerFragment : Fragment() {
         NotificationManagerCompat.from(requireContext()).notify(1, builder.build())
     }
 
-    private fun checkAndRequestNotificationPermission() {
+    fun checkAndRequestNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),

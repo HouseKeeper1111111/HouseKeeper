@@ -77,7 +77,6 @@ class RemindersListFragment : Fragment() {
             menuActionReschedule = menu.findItem(R.id.action_reschedule)
             menuActionCopyText = menu.findItem(R.id.action_copy_text)
             menuActionMarkDone = menu.findItem(R.id.action_mark_done)
-            //            menuActionEdit = menu.findItem(R.id.action_edit);
             return true
         }
 
@@ -128,12 +127,7 @@ class RemindersListFragment : Fragment() {
                     ) // have to reschedule as some might still be scheduled
                     mode.finish()
                 }
-                R.id.action_add_template ->
-                    Toast.makeText(
-                        context,
-                        getString(R.string.reminder_list_action_placeholder),
-                        Toast.LENGTH_SHORT
-                    ).show()
+
                 R.id.action_delete -> {
                     ReminderManager.removeReminders(requireContext(), selection)
                     mode.finish()

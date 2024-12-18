@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/main_color</item>
         <item name="android:forceDarkAllowed" tools:ignore="NewApi">true</item> <!-- applies only on API 29+ -->
     </style>
 

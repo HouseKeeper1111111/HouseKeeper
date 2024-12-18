@@ -8,8 +8,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -21,8 +25,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.Prefs
 import com.example.myapplication.R
 import com.example.myapplication.ui.actions.DisplayChangeLog
-import com.example.myapplication.ui.actions.DisplayWelcomeMessage
-import com.example.myapplication.ui.actions.DisplayWelcomeMessageUpdate
 import com.example.myapplication.ui.util.HtmlDialogFragment
 import com.example.myapplication.util.ImplementationError
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -30,7 +32,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import de.cketti.library.changelog.ChangeLog
 import com.example.myapplication.BootReceiver
-import com.example.myapplication.Main
 import com.example.myapplication.ui.AddReminderDialogActivity
 import com.example.myapplication.ui.SettingsActivity
 import com.example.myapplication.ui.util.UIUtils
@@ -49,12 +50,44 @@ class RemindersListActivity : AppCompatActivity() {
         viewPager = findViewById(R.id.container)
         viewPager.adapter = ViewPagerAdapter()
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = when (position) {
-                0 -> getString(R.string.tab_reminders)
-                1 -> getString(R.string.tab_templates)
-                else -> throw ImplementationError("Invalid tab number $position")
+            val context = this@RemindersListActivity
+            val linearLayout = LinearLayout(context).apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = Gravity.CENTER
+                setPadding(8, 8, 8, 8)
             }
+
+            val imageView = ImageView(context).apply {
+                layoutParams = LinearLayout.LayoutParams(80, 80).apply {
+                    marginEnd = 8
+                }
+                setImageResource(
+                    when (position) {
+                        0 -> R.drawable.icon_reminder
+                        1 -> R.drawable.icon_timer
+                        else -> throw ImplementationError("Invalid tab number $position")
+                    }
+                )
+            }
+
+            val textView = TextView(context).apply {
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                text = when (position) {
+                    0 -> getString(R.string.tab_reminders)
+                    1 -> getString(R.string.tab_timers)
+                    else -> throw ImplementationError("Invalid tab number $position")
+                }
+                textSize = 16f
+            }
+
+            linearLayout.addView(imageView)
+            linearLayout.addView(textView)
+            tab.customView = linearLayout
         }.attach()
+
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
             if (!Prefs.isAddReminderDialogUsed(this@RemindersListActivity)) {
@@ -100,13 +133,6 @@ class RemindersListActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             checkNotificationPermission()
         }
-
-        // Show general welcome dialog on first launch of app and update welcome dialog on first launch with new version
-        if (showGeneralWelcomeMessage) {
-            Main.showWelcomeMessage(this)
-        } else if (isFirstRunOfVersion) {
-            Main.showWelcomeMessageUpdate(this)
-        }
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -138,9 +164,7 @@ class RemindersListActivity : AppCompatActivity() {
                 val title = getString(R.string.app_name) + " 1.0.0"
                 HtmlDialogFragment.displayHtmlDialogFragment(
                     supportFragmentManager,title, R.raw.about,
-                    DisplayChangeLog::class.java,
-                    DisplayWelcomeMessage::class.java,
-                    DisplayWelcomeMessageUpdate::class.java
+                    DisplayChangeLog::class.java
                 )
             }
         }

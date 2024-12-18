@@ -2,21 +2,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--PreferenceCategory
-        android:title="@string/preference_category_general"
-        app:iconSpaceReserved="false">
-
-        <ListPreference
-            android:defaultValue="@string/system_locale"
-            android:dialogTitle="@string/preferences_language"
-            android:entries="@array/settings_language_values"
-            android:entryValues="@array/locales"
-            android:key="pref_key_language"
-            android:summary="%s"
-            android:title="@string/preferences_language"
-            app:iconSpaceReserved="false" />
-    </PreferenceCategory-->
-
     <PreferenceCategory
         android:key="@string/prefkey_cat_notifications"
         android:title="@string/preference_category_notifications"

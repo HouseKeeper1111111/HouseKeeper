@@ -49,7 +49,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             summaryProvider = SummaryProvider { _: Preference? ->
                 DateTimeUtil.formatMinutes(Prefs.getNaggingRepeatInterval(context).toLong(), context)
             }
-            // Validation
+            // Validation.
             onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener listener@{ _: Preference?, newValue: Any ->
                     try {
@@ -58,21 +58,21 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                             return@listener true
                         }
                     } catch (ex: NumberFormatException) {
-                        // Incorrect format, handled below
+                        // Incorrect format, handled below.
                     }
                     Toast.makeText(context, R.string.preference_nagging_repeat_interval_format_error, Toast.LENGTH_LONG).show()
                     false
                 }
         }
 
-        // Reminder dialog customizations only apply for Android >= 5.0
+        // Reminder dialog customizations only apply for Android >= 5.0.
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             findPreference<PreferenceCategory>(getString(R.string.prefkey_cat_ui))?.apply {
                 parent?.removePreference(this)
             }
         }
 
-        // Priority/Sound settings only work for Android < 8
+        // Priority/Sound settings only work for Android < 8.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationsPrefGroup = findPreference<PreferenceCategory>(getString(R.string.prefkey_cat_notifications))
             notificationsPrefGroup!!.removePreference(findPreference(getString(R.string.prefkey_priority))!!)
@@ -125,7 +125,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     // Note: This will set the preference again through SharedPreferences, but that should not result in calling this listener again.
                     Prefs.enableRunOnBoot(context, activity)
                 } else {
-                    // Disable run on boot
+                    // Disable run on boot.
                     BootReceiver.setBootReceiverEnabled(requireContext(), false)
                 }
         }
@@ -156,7 +156,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                         true
                     }
             } else {
-                // NOTE: As the text should change with "setSummary" here, the markup should apply. Should the text be equal, would need a workaround.
+                // NOTE: As the text should change with "setSummary" here, the markup should apply. Should the text be equal, would need a workaround
                 batPref.summary =
                     when {
                         api >= 33 -> getString(R.string.preference_disable_battery_optimization_summary_no_API33)

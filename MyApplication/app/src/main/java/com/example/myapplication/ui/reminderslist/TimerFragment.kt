@@ -188,7 +188,7 @@ class TimerFragment : Fragment() {
 
     private fun createNotificationChannel() {
         val name = "Timer Notifications"
-        val descriptionText = "Уведомления по таймеру"
+        val descriptionText = "Timer notifications"
         val importance = NotificationManager.IMPORTANCE_HIGH
         val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
             description = descriptionText
@@ -207,8 +207,8 @@ class TimerFragment : Fragment() {
 
         val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
             .setSmallIcon(R.drawable.housekeeper_icon)
-            .setContentTitle("Таймер завершён")
-            .setContentText("Ваш таймер подошёл к концу.")
+            .setContentTitle("Тimer")
+            .setContentText("Your timer is running out.")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setSound(soundUri)

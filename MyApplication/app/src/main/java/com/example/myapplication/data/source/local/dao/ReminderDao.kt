@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ReminderDao {
 
-    @Query("SELECT * FROM Reminder")
+    @Query("SELECT * FROM ReminderModel")
     fun getAllReminders() : Flow<List<ReminderEntity>>
 
     @Insert
@@ -20,10 +20,10 @@ interface ReminderDao {
     @Update
     fun updateReminder(reminder: ReminderEntity)
 
-    @Query("SELECT * FROM Reminder WHERE id=:id")
+    @Query("SELECT * FROM ReminderModel WHERE id=:id")
     fun getReminderById(id: Int) : Flow<ReminderEntity>
 
-    @Query("SELECT * FROM Reminder WHERE categoryId=:categoryId")
+    @Query("SELECT * FROM ReminderModel WHERE categoryId=:categoryId")
     fun getReminderByCategoryId(categoryId: Int): Flow<List<ReminderEntity>>
 
     @Delete

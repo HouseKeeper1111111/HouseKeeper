@@ -2,12 +2,12 @@ package com.example.myapplication.data.source.local.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.housekeeper.core.data.repository.LocalDataSourceRepositoryImpl
-import com.example.housekeeper.core.data.source.local.dataSourse.ReminderLocalDataSource
-import com.example.housekeeper.core.data.source.local.dataSourse.TimerLocalDataSource
-import com.example.housekeeper.core.data.source.local.dataSourse.room.ReminderRoomDataSource
-import com.example.housekeeper.core.data.source.local.dataSourse.room.TimerRoomDataSource
-import com.example.housekeeper.core.data.source.local.db.HouseKeeperRoomDatabase
+import com.example.myapplication.data.repository.LocalDataSourceRepositoryImpl
+import com.example.myapplication.data.source.local.dataSource.ReminderLocalDataSource
+import com.example.myapplication.data.source.local.dataSource.TimerLocalDataSource
+import com.example.myapplication.data.source.local.dataSource.room.ReminderRoomDataSource
+import com.example.myapplication.data.source.local.dataSource.room.TimerRoomDataSource
+import com.example.myapplication.data.source.local.db.HouseKeeperRoomDatabase
 import com.example.myapplication.domain.repository.LocalDataSourceRepository
 import dagger.Binds
 import dagger.Module

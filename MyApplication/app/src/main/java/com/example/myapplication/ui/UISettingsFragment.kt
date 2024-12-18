@@ -15,8 +15,6 @@ import com.example.myapplication.R
 
 class UISettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.preferences_ui, rootKey)
-
         // The toggle button does not exist before Android 8.0, so remove the corresponding preference
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             findPreference<Preference>(getString(R.string.prefkey_reminder_dialog_timepicker_show_keyboard_button))?.apply {

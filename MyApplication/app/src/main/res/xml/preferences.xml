@@ -37,17 +37,6 @@
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 
-
-    <PreferenceCategory
-        android:key="@string/prefkey_cat_ui"
-        android:title="@string/preference_category_ui"
-        app:iconSpaceReserved="false">
-        <Preference
-            android:title="@string/preference_category_reminder_dialog"
-            app:fragment="felixwiemuth.simplereminder.ui.UISettingsFragment"
-            app:iconSpaceReserved="false" />
-    </PreferenceCategory>
-
     <PreferenceCategory
         android:title="@string/preference_category_app"
         app:iconSpaceReserved="false">

@@ -176,13 +176,13 @@ class TimerFragment : Fragment() {
 
     private fun showDeleteDialog(button: Button, timeInMillis: Long) {
         AlertDialog.Builder(requireContext())
-            .setTitle("Удалить таймер")
-            .setMessage("Вы уверены, что хотите удалить этот таймер?")
-            .setPositiveButton("Удалить") { _, _ ->
+            .setTitle("Delete timer")
+            .setMessage("Are you sure that you want to delete this timer?")
+            .setPositiveButton("Delete") { _, _ ->
                 quickTimersContainer.removeView(button)
                 savedTimers.remove(timeInMillis)
             }
-            .setNegativeButton("Отмена", null)
+            .setNegativeButton("Cancel", null)
             .show()
     }
 

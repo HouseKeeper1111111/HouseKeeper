@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import androidx.preference.PreferenceManager
 import com.example.myapplication.ReminderManager.createNotificationChannel
-import com.example.myapplication.ui.util.UIUtils
 import org.acra.config.dialog
 import org.acra.config.mailSender
 import org.acra.ktx.initAcra
@@ -43,15 +42,5 @@ class Main : Application() {
 
         @JvmField
         var REMINDERS_LIST_FORMAT_VERSION = 1
-
-        @JvmStatic
-        fun showWelcomeMessage(context: Context) {
-            UIUtils.showMessageDialog(R.string.dialog_welcome_title, R.string.welcome_message, context)
-        }
-
-        @JvmStatic
-        fun showWelcomeMessageUpdate(context: Context) {
-            UIUtils.showMessageDialog(R.string.dialog_welcome_title, R.string.welcome_message_update, context)
-        }
     }
 }
